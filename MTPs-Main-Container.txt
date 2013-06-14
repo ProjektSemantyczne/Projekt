@@ -1,1 +1,1 @@
-http://Misio-lenovo:7778/acc
+http://Misio-Komputer:7778/acc

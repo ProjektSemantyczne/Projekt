@@ -3,6 +3,8 @@ package projekt.agents;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -32,24 +34,24 @@ public class AgentTrip extends Agent{
 	private static final long serialVersionUID = 5862645069068601092L;
 	OntologyManager ontologyManager;
 	OWLOntology travelOntology;
-	
+
 	protected void setup(){
 		System.out.println("Agent " + getLocalName() + " started");
-		
+
 		ontologyManager = new OntologyManager();
-		
+
 		//Load the pizza ontology
 		//File travelFile = new File("ontologies/travelontology.owl");
 		/* REASONER TEST */
-		
-		
+
+
 		/* END TEST */
 		try {
 			travelOntology = ontologyManager.loadAndMapOntology(new File("ontologies/travelontology.owl"), "http://misio.biz/travelontology.owl");
 			OWLReasoner reasoner = ontologyManager.getQueryManager().getOWLReasoner(true, travelOntology);
 			//Listen for client messages
 			addBehaviour(new RecieveClientMessages(this));
-		
+
 		} catch (OWLOntologyCreationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,7 +61,10 @@ public class AgentTrip extends Agent{
 		//Clean up
 		ontologyManager.removeAndUnmapAllOntologies();
 	}
-	
+	protected String stripFromIRI(String s) {
+		String[] temp = s.split("#");
+		return temp[1].split(">")[0];
+	}
 	class RecieveClientMessages extends CyclicBehaviour{
 
 		private static final long serialVersionUID = 7569347209298378146L;
@@ -67,92 +72,90 @@ public class AgentTrip extends Agent{
 		public RecieveClientMessages(Agent a){
 			super(a);
 		}
-		
-		public void action() 
-        {
 
-		   System.out.println("Agent " + getLocalName() + " listening for client messages");
-		   ACLOWLMessage msg= (ACLOWLMessage) blockingReceive();
-		   System.out.println("Agent " + getLocalName() + " received message");
-           if (msg!=null){
-        	   //Print the content of the message
-               //System.out.println( " - " + myAgent.getLocalName() + " <- " + msg.getContent() );
-               try {
-            	   System.out.println(msg.getContent());
-            	//Extract the ontology from the message
-            	System.out.println(msg.getConversationId());
-				ontology = msg.getContentOntology(ontologyManager,myAgent);
-				for (OWLClass cls : ontology.getClassesInSignature())
-					System.out.println(cls);
-				//System.out.println("Received ontology:\n" + ontology);
-				
-				//Get query classes from the ontology
-				Set<OWLClass> filteredSet = ontologyManager.getQueryManager().filterOWLQueryClasses(ontology);
-				
-				//Print the found query classes
-				/*Iterator<OWLClass> iterator = filteredSet.iterator();
-				System.out.println("Filtered query classes:");
-				while(iterator.hasNext()){
-					System.out.println(iterator.next());
-				}*/
-				
-				if(!filteredSet.isEmpty()){
-					//Get the instances that answer the query
-					
-					//Remember to include the received query ontology...
-					//Set<OWLNamedIndividual> individuals = ontologyManager.getQueryManager().getInstancesForClassQuery(filteredSet.iterator().next(), pizzaOntology, ontology);
-					
-					//...or import the ontologies into the query ontology and let the reasoner do all the work
-					ontologyManager.addImportToOntology(ontology, travelOntology);
-					Set<OWLNamedIndividual> individuals = ontologyManager.getQueryManager().getInstancesForClassQuery(filteredSet.iterator().next(), ontology);
-					//Print all answers 
-/*					Iterator<OWLNamedIndividual> it = individuals.iterator();
-					System.out.println("Query answer:");
-					while(it.hasNext()){
-						OWLNamedIndividual ind = it.next();
-						Map<OWLObjectPropertyExpression, Set<OWLIndividual>> s = ind.getObjectPropertyValues(travelOntology);
-						Iterable<Set<OWLIndividual>> data = s.values();
-						Iterator<Set<OWLIndividual>> iterator = data.iterator();
-						while(iterator.hasNext())
-							System.out.println(iterator.next());
-						Iterable<OWLClassExpression> x = ind.getTypes(travelOntology);
-						Iterator<OWLClassExpression> it2 = x.iterator();
-						System.out.println("Pañstwo = " + it2.next());
-						System.out.println("Miasto = " + ind);	
-						System.out.println("--------------");
-					}*/
-					ACLOWLMessage msgAnswer = new ACLOWLMessage(ACLMessage.QUERY_IF);
-					OWLOntology answerOnto = ontologyManager.getQueryManager().prepareQueryAnswerFromInstances(individuals, travelOntology, myAgent);
-	        		msgAnswer.addReceiver(new AID("client", AID.ISLOCALNAME));
-	        		try {
-	        			//Fill the content of the message with ontology
-	        			//ontologyManager.fillJadeACLMessageContent(msgAnswer, answerOnto);
-	        			
-	        			//msgAnswer.setConversationId(msg.getConversationId());
-	        			msgAnswer.setOntology(msg.getOntology());
-	        			msgAnswer.setContentOntology(answerOnto);
-	        			//msgAnswer.setLanguage(msg.getLanguage());
-	        			//Send the answer
-	        			System.out.println("Agent " + getLocalName() + " answering Client");
-		        		send(msgAnswer);
-					} catch (OWLOntologyStorageException e) {
-						e.printStackTrace();
+		public void action() 
+		{
+
+			System.out.println("Agent " + getLocalName() + " listening for client messages");
+			ACLOWLMessage msg= (ACLOWLMessage) blockingReceive();
+			System.out.println("Agent " + getLocalName() + " received message");
+			if (msg!=null) {
+				try {
+					ontology = msg.getContentOntology(ontologyManager,myAgent);
+					if(msg.getConversationId() == "Preferences") {
+						//System.out.println(msg.getContent());
+						System.out.println(msg.getConversationId());
+						Set<OWLClass> filteredSet = ontologyManager.getQueryManager().filterOWLQueryClasses(ontology);
+						if(!filteredSet.isEmpty()) {
+							ontologyManager.addImportToOntology(ontology, travelOntology);
+							Set<OWLNamedIndividual> individuals = ontologyManager.getQueryManager().getInstancesForClassQuery(filteredSet.iterator().next(), ontology);
+							ACLOWLMessage msgAnswer = new ACLOWLMessage(ACLMessage.QUERY_IF);
+							OWLOntology answerOnto = ontologyManager.getQueryManager().prepareQueryAnswerFromInstances(individuals, travelOntology, myAgent);
+							msgAnswer.addReceiver(new AID("client", AID.ISLOCALNAME));
+							try {
+								msgAnswer.setOntology(msg.getOntology());
+								msgAnswer.setContentOntology(answerOnto);
+								System.out.println("Agent " + getLocalName() + " answering Client");
+								msgAnswer.setConversationId(msg.getConversationId());
+								send(msgAnswer);
+							} catch (OWLOntologyStorageException e) {
+								e.printStackTrace();
+							}
+						}
 					}
+					else {
+						Set<OWLNamedIndividual> indReturn = new HashSet<OWLNamedIndividual>();
+						Set<OWLNamedIndividual> indTemp = new HashSet<OWLNamedIndividual>();
+						indReturn.clear();
+						indTemp.clear();
+						System.out.println(msg.getContent());
+						System.out.println(msg.getConversationId());
+						Set<OWLNamedIndividual> individuals = ontologyManager.getQueryManager().filterAnswerSetInstances(ontology);
+						Iterator<OWLNamedIndividual> indIterator = individuals.iterator();
+						int licznik = 0;
+						while(indIterator.hasNext()) {
+							licznik++;
+							Map<OWLObjectPropertyExpression, Set<OWLIndividual>> individualProperties = indIterator.next().getObjectPropertyValues(travelOntology);
+							Iterator<OWLObjectPropertyExpression> indKeys = individualProperties.keySet().iterator();
+							while(indKeys.hasNext()) {
+								OWLObjectPropertyExpression key = indKeys.next();
+								if(stripFromIRI(key.toString()).equals("hasCity")) {
+									Iterator<OWLIndividual> valIterator = individualProperties.get(key).iterator();
+									while(valIterator.hasNext()) {
+										OWLNamedIndividual individual = (OWLNamedIndividual) valIterator.next();
+										if(indTemp.contains(individual))
+												indReturn.add(individual);
+										indTemp.add(individual);
+									}
+								}
+							}
+						}
+						System.out.println(indReturn.toString());
+						ACLOWLMessage msgAnswer = new ACLOWLMessage(ACLMessage.QUERY_IF);
+						OWLOntology answerOnto;
+						if(licznik==1) {
+							answerOnto = ontologyManager.getQueryManager().prepareQueryAnswerFromInstances(indTemp, travelOntology, myAgent);
+						} else {
+							answerOnto = ontologyManager.getQueryManager().prepareQueryAnswerFromInstances(indReturn, travelOntology, myAgent);
+						}
+						msgAnswer.addReceiver(new AID("client", AID.ISLOCALNAME));
+						msgAnswer.setOntology(msg.getOntology());
+						msgAnswer.setContentOntology(answerOnto);
+						System.out.println("Agent " + getLocalName() + " answering Client");
+						msgAnswer.setConversationId(msg.getConversationId());
+						send(msgAnswer);
+						//System.out.println(individualProperties.toString());
+					}
+				} catch (OWLOntologyCreationException e) {
+					e.printStackTrace();
+				} catch (OWLOntologyStorageException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
-				
-			} catch (OWLOntologyCreationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (OWLOntologyStorageException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-           }
-           block();
-        }
+			block();
+		}
 	}
-	
+
 }

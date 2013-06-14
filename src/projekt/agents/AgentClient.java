@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.JDialog;
+
 import org.semanticweb.owlapi.expression.ParserException;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassAssertionAxiom;
@@ -57,7 +59,7 @@ public class AgentClient extends Agent{
 			
 			//Create a query class that asks for all individuals of class "Country"
 			ontologyManager.getQueryManager().createCustomQueryClass(countryQueryOntology, "countryQuery", countryClass);
-			addBehaviour(new AskForCountriesBehaviour(this,countryQueryOntology));
+			addBehaviour(new AskForCountriesBehaviour(this));
 		} catch (OWLOntologyCreationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,17 +75,16 @@ public class AgentClient extends Agent{
 	}
 	class AskForCountriesBehaviour extends Behaviour
 	{
-
+		String[] preferences = new String[10];
 		private static final long serialVersionUID = 5639516177887167091L;
 		private boolean finished = false;
     	private OWLOntology m_queryOntology;
-    	private int step = -1;
+    	private int step = 0;
     	String nextQuery = null;
     	private Agent agent;
-        public AskForCountriesBehaviour(Agent a, OWLOntology queryOntology) {
+        public AskForCountriesBehaviour(Agent a) {
             super(a);
             agent = a;
-            m_queryOntology = queryOntology;
         }
         
         public void action() 
@@ -94,50 +95,42 @@ public class AgentClient extends Agent{
         	// Nazwa do wyœwietlenia "Wybierz name" - miasto, pañstwo itd 
         	String name = null;
         	switch(step) {
-        	case -1:
-        		System.out.println("Agent " + getLocalName() + " asking for cities(Object properties)");
-        		msg.setConversationId("Montenegro");
-        		try {
-					OWLOntology cityQueryOntology = ontologyManager.getQueryManager().createNewOWLQueryOntology();
-					OWLNamedIndividual cityClass = ontologyManager.getDataFactory().getOWLNamedIndividual(travelOntology, "Montenegro");
-					//System.out.println(cityClass.getObjectPropertyValues(travelOntology).toString());
-					//System.out.println(cityClass.toString());
-					individuals.add(cityClass);
-					OWLOntology answerOnto = ontologyManager.getQueryManager().prepareQueryAnswerFromInstances(individuals, cityQueryOntology, myAgent);
-					msg.setContentOntology(answerOnto);
-					//msg.setContentOntology(cityQueryOntology);
-				} catch (IllegalArgumentException | OWLOntologyStorageException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (OWLOntologyCreationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-        		send(msg);
-        		break;
         	case 0:
-        		System.out.println("Agent " + getLocalName() + " asking for countries");
-            	try {
-    				msg.setContentOntology(m_queryOntology);
-    			} catch (OWLOntologyStorageException e) {
-    				e.printStackTrace();
-    			}
-            	name = "pañstwo";
-            	send(msg);
-        		break;
-        	case 1:
-        		name = "miasto";
-        		System.out.println("Agent " + getLocalName() + " asking for city");
+        		msg.setConversationId("Preferences");
+        		System.out.println("Agent " + getLocalName() + " asking for preferences");
         		try {
-					OWLOntology cityQueryOntology = ontologyManager.getQueryManager().createNewOWLQueryOntology();
-					OWLClass cityClass = ontologyManager.getDataFactory().getOWLClass(travelOntology, nextQuery);
-					ontologyManager.getQueryManager().createCustomQueryClass(cityQueryOntology, "cityQuery", cityClass);
-					msg.setContentOntology(cityQueryOntology);
+					OWLOntology preferencesQueryOntology = ontologyManager.getQueryManager().createNewOWLQueryOntology();
+					OWLClass preferencesClass = ontologyManager.getDataFactory().getOWLClass(travelOntology, "Preferences");
+					ontologyManager.getQueryManager().createCustomQueryClass(preferencesQueryOntology, "hotelQuery", preferencesClass);
+					msg.setContentOntology(preferencesQueryOntology);
 				} catch (OWLOntologyCreationException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (OWLOntologyStorageException e) {
 					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            	name = "pañstwo";
+            	send(msg);
+        		break;
+        	case 1:
+        		individuals.clear();
+        		System.out.println("Agent " + getLocalName() + " asking for cities(Object properties) for preferences");
+        		try {
+					OWLOntology cityQueryOntology = ontologyManager.getQueryManager().createNewOWLQueryOntology();
+					for(int i = 0; i < preferences.length; i++) {
+						System.out.println(preferences[i]);
+						if(preferences[i]!=null && !preferences[i].isEmpty())
+							individuals.add(ontologyManager.getDataFactory().getOWLNamedIndividual(travelOntology, preferences[i]));
+					}
+					//System.out.println(cityClass.getObjectPropertyValues(travelOntology).toString());
+					//System.out.println(cityClass.toString());
+					OWLOntology answerOnto = ontologyManager.getQueryManager().prepareQueryAnswerFromInstances(individuals, cityQueryOntology, myAgent);
+					msg.setContentOntology(answerOnto);
+					msg.setConversationId("City");
+				} catch (IllegalArgumentException | OWLOntologyStorageException e) {
+					e.printStackTrace();
+				} catch (OWLOntologyCreationException e) {
 					e.printStackTrace();
 				}
         		send(msg);
@@ -168,14 +161,29 @@ public class AgentClient extends Agent{
 					ontology = ontologyManager.getOntologyFromACLMessage(msgAnswer);
 					Set<OWLNamedIndividual> individuals = ontologyManager.getQueryManager().filterAnswerSetInstances(ontology);
 					ontologyManager.getQueryManager().removeAnswerSetAxioms(ontology);
-					Dialog dialog = new Dialog();
-					String s = dialog.Create(individuals, name);
-					System.out.println(s);
-					nextQuery = s;
+					//Dialog dialog = new Dialog();
+					//String s = dialog.Create(individuals, name);
+					//System.out.println(s);
+					//nextQuery = s;
+					//System.out.println(individuals.toString());
+					switch(step) {
+						case 0:
+							MyFrame dialog = new MyFrame();
+							preferences = dialog.Create(individuals);
+							dialog.setVisible(true);
+							dialog.setSize(500,600);
+							dialog.addNotify();
+						break;
+						case 1:
+							Dialog dialog2 = new Dialog();
+							String s = dialog2.Create(individuals, "bla");
+							
+						break;
+					}
 					step++;
 					System.out.println("Step - " + step);
 					// Iterujemy po individualach
-					Iterator<OWLNamedIndividual> it = individuals.iterator();
+/*					Iterator<OWLNamedIndividual> it = individuals.iterator();
 					System.out.println("Query answer:");
 					while(it.hasNext()){
 						OWLNamedIndividual ind = it.next();
@@ -201,8 +209,8 @@ public class AgentClient extends Agent{
 						System.out.println("Pañstwo = " + it2.next());
 						System.out.println("Miasto = " + ind);	
 						System.out.println("--------------");
-					}
-				} catch (OWLOntologyCreationException e) {
+					}*/
+				} catch (OWLOntologyCreationException | IOException e) {
 					e.printStackTrace();
 				}
             }
@@ -211,7 +219,7 @@ public class AgentClient extends Agent{
 
 		@Override
 		public boolean done() {
-			return step==3;
+			return step==2;
 		}
 	}
 }
