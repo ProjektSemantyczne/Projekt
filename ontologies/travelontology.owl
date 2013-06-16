@@ -1039,6 +1039,15 @@
     
 
 
+    <!-- http://misio.biz/travelontology.owl#SPA -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#SPA">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Preferences"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Rome"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://misio.biz/travelontology.owl#Sea -->
 
     <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Sea">
@@ -1133,20 +1142,6 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FiveStarRating"/>
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#ThreeStarRating"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FourStarRating"/>
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#OneStarRating"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
             <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FourStarRating"/>
             <rdf:Description rdf:about="http://misio.biz/travelontology.owl#ThreeStarRating"/>
         </owl:distinctMembers>
@@ -1156,20 +1151,6 @@
         <owl:distinctMembers rdf:parseType="Collection">
             <rdf:Description rdf:about="http://misio.biz/travelontology.owl#OneStarRating"/>
             <rdf:Description rdf:about="http://misio.biz/travelontology.owl#TwoStarRating"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FourStarRating"/>
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#TwoStarRating"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#OneStarRating"/>
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#ThreeStarRating"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
@@ -1189,7 +1170,28 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#OneStarRating"/>
             <rdf:Description rdf:about="http://misio.biz/travelontology.owl#ThreeStarRating"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FourStarRating"/>
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#OneStarRating"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#ThreeStarRating"/>
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#TwoStarRating"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FourStarRating"/>
             <rdf:Description rdf:about="http://misio.biz/travelontology.owl#TwoStarRating"/>
         </owl:distinctMembers>
     </rdf:Description>
@@ -1198,6 +1200,13 @@
         <owl:distinctMembers rdf:parseType="Collection">
             <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FiveStarRating"/>
             <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FourStarRating"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FiveStarRating"/>
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#ThreeStarRating"/>
         </owl:distinctMembers>
     </rdf:Description>
 </rdf:RDF>

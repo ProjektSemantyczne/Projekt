@@ -94,6 +94,7 @@ public class AgentClient extends Agent{
         	msg.setOntology("http://misio.biz/travelontology.owl");
         	// Nazwa do wyœwietlenia "Wybierz name" - miasto, pañstwo itd 
         	String name = null;
+        	
         	switch(step) {
         	case 0:
         		msg.setConversationId("Preferences");
@@ -175,9 +176,12 @@ public class AgentClient extends Agent{
 							dialog.addNotify();
 						break;
 						case 1:
-							Dialog dialog2 = new Dialog();
-							String s = dialog2.Create(individuals, "bla");
-							
+							//Dialog dialog2 = new Dialog();
+							//String s = dialog2.Create(individuals, "bla");
+							//List l = new List(individuals);
+							//l.setVisible(true);
+							SimpleTableDemo dialog1 = new SimpleTableDemo(individuals);
+							dialog1.createAndShowGUI();
 						break;
 					}
 					step++;

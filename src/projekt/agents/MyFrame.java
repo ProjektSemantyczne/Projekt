@@ -1,7 +1,9 @@
 package projekt.agents;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -21,20 +23,6 @@ import org.semanticweb.owlapi.model.OWLNamedIndividual;
 
 
 
-class backImage extends JComponent {
-
-
-	private static final long serialVersionUID = 1L;
-	Image i;
-
-	public backImage(Image i) {
-		this.i = i;
-	}
-	@Override
-	public void paintComponent(Graphics g) {
-		g.drawImage(i, 0, 0, null);  // Drawing image using drawImage method
-	}
-}
 public class MyFrame extends JDialog {
 	private static final long serialVersionUID = 1L;
 	public MyFrame() {
@@ -45,26 +33,35 @@ public class MyFrame extends JDialog {
 		this.setSize(600, 450);
 		this.setTitle("Travel");
 		URL url = this.getClass().getResource("/images/travel1.png");
-		BufferedImage bf = ImageIO.read(url);
-		this.setContentPane(new backImage(bf));
+		try {
+			BufferedImage bf = ImageIO.read(url);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		setLayout(new BorderLayout());
+		JLabel background=new JLabel(new ImageIcon(getClass().getResource("/images/travel1.png")));
+		this.add(background);
+		background.setLayout(new FlowLayout());
 		this.setModal(true);
 		//adding other component
 		JButton b = new JButton("Send");
 		final JPanel panel = new JPanel( ); 
-		panel.setBackground(new Color(0, 0, 0,0));
+		panel.setBackground(new Color(0,0,0,0));
 		Iterator<OWLNamedIndividual> it = individuals.iterator();
 		Integer i = 0;
 		while(it.hasNext()){
 			String[] item2 = it.next().toString().split("#");
 			String item3 = item2[1].split(">")[0];
 			JCheckBox check = new JCheckBox(item3);
+			check.setBorderPainted(false);
 			//check.setOpaque(false);
 			panel.add(check);
-			panel.setBounds(300,40 ,200,100);
+			//panel.setBounds(300,40 ,200,100);
 		}
 		b.setBounds(318, 143, 98, 27);
-		this.add(b);
-		this.add(panel);
+		background.add(b);
+		background.add(panel);
 		b.addActionListener(new ActionListener( ) {
 			public void actionPerformed(ActionEvent ae) {
 				Component[] components = panel.getComponents();
@@ -80,4 +77,5 @@ public class MyFrame extends JDialog {
 		});
 		return ret;
 	}
+	
 }
