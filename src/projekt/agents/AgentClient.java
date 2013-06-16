@@ -159,8 +159,9 @@ public class AgentClient extends Agent{
             if (msgAnswer!=null){
             	OWLOntology ontology;
 				try {
+					individuals.clear();
 					ontology = ontologyManager.getOntologyFromACLMessage(msgAnswer);
-					Set<OWLNamedIndividual> individuals = ontologyManager.getQueryManager().filterAnswerSetInstances(ontology);
+					individuals = ontologyManager.getQueryManager().filterAnswerSetInstances(ontology);
 					ontologyManager.getQueryManager().removeAnswerSetAxioms(ontology);
 					//Dialog dialog = new Dialog();
 					//String s = dialog.Create(individuals, name);
@@ -169,7 +170,7 @@ public class AgentClient extends Agent{
 					//System.out.println(individuals.toString());
 					switch(step) {
 						case 0:
-							MyFrame dialog = new MyFrame();
+							PreferencesFrame dialog = new PreferencesFrame();
 							preferences = dialog.Create(individuals);
 							dialog.setVisible(true);
 							dialog.setSize(500,600);
@@ -180,7 +181,8 @@ public class AgentClient extends Agent{
 							//String s = dialog2.Create(individuals, "bla");
 							//List l = new List(individuals);
 							//l.setVisible(true);
-							SimpleTableDemo dialog1 = new SimpleTableDemo(individuals);
+							//System.out.println(individuals);
+							TripsFrame dialog1 = new TripsFrame(individuals);
 							dialog1.createAndShowGUI();
 						break;
 					}

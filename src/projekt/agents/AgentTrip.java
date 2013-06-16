@@ -1,5 +1,6 @@
 package projekt.agents;
 
+import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,6 +10,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassExpression;
@@ -139,6 +143,7 @@ public class AgentTrip extends Agent{
 								}
 								if(count == indTemp.size()) {
 									indReturn.add(ind);
+									System.out.println("Add to return: " + ind);
 								}
 							}
 						}

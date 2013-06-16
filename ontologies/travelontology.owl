@@ -332,6 +332,12 @@
     
 
 
+    <!-- http://misio.biz/travelontology.owl#hasPrice -->
+
+    <owl:DatatypeProperty rdf:about="http://misio.biz/travelontology.owl#hasPrice"/>
+    
+
+
     <!-- http://misio.biz/travelontology.owl#hasStreet -->
 
     <owl:DatatypeProperty rdf:about="http://misio.biz/travelontology.owl#hasStreet">
@@ -496,7 +502,7 @@
     <!-- http://misio.biz/travelontology.owl#Duration -->
 
     <owl:Class rdf:about="http://misio.biz/travelontology.owl#Duration">
-        <rdfs:subClassOf rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <rdfs:subClassOf rdf:resource="http://misio.biz/travelontology.owl#Tour"/>
     </owl:Class>
     
 
@@ -572,14 +578,6 @@
     
 
 
-    <!-- http://misio.biz/travelontology.owl#Hotels -->
-
-    <owl:Class rdf:about="http://misio.biz/travelontology.owl#Hotels">
-        <rdfs:subClassOf rdf:resource="http://misio.biz/travelontology.owl#TravelAgency"/>
-    </owl:Class>
-    
-
-
     <!-- http://misio.biz/travelontology.owl#Insurance -->
 
     <owl:Class rdf:about="http://misio.biz/travelontology.owl#Insurance">
@@ -606,9 +604,7 @@
 
     <!-- http://misio.biz/travelontology.owl#Lloret_de_Mar_Hotels -->
 
-    <owl:Class rdf:about="http://misio.biz/travelontology.owl#Lloret_de_Mar_Hotels">
-        <rdfs:subClassOf rdf:resource="http://misio.biz/travelontology.owl#Hotels"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://misio.biz/travelontology.owl#Lloret_de_Mar_Hotels"/>
     
 
 
@@ -797,10 +793,101 @@
     
 
 
+    <!-- http://misio.biz/travelontology.owl#1.07.2013-8.07.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#1.07.2013-8.07.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasPrice rdf:datatype="&xsd;float">1399.0</hasPrice>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#7"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Lloret_de_Mar"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Oasis_Park_****"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#1.08-2013-15.08.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#1.08-2013-15.08.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasPrice rdf:datatype="&xsd;float">1689.99</hasPrice>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#14"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Bar"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Princess_****"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#1.10.2013-8.10.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#1.10.2013-8.10.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasPrice rdf:datatype="&xsd;float">1489.99</hasPrice>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#7"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Floris_Hotel_***"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Rome"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#10.08.2013-24.08.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#10.08.2013-24.08.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#14"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Athens"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Plaka_***"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#10.09.2013-24.09.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#10.09.2013-24.09.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#14"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Bahama_***"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Rimini"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#10.12.2013-24.12.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#10.12.2013-24.12.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#14"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Hotel_Meeting_****"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Livigno"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://misio.biz/travelontology.owl#12 -->
 
     <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#12">
         <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Duration"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#12.08.2013-24.08.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#12.08.2013-24.08.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#12"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Dubrovnik"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Dubrovnik_Palace_*****"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#12.12.2013-19.12.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#12.12.2013-19.12.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#7"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Hotel_Marzia_****"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Livigno"/>
     </owl:NamedIndividual>
     
 
@@ -816,6 +903,190 @@
     
 
 
+    <!-- http://misio.biz/travelontology.owl#14 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#14">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Duration"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#14.07.2013-26.07.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#14.07.2013-26.07.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#12"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Diplomat_Palace_****"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Rimini"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#15.08.2013-29.08.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#15.08.2013-29.08.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#14"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Hotel_Begic_***"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Makarska"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#17.09.2013-24.09.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#17.09.2013-24.09.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#7"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Hotel_Sonya_***"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Rome"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#2.07.2013-14.07-2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#2.07.2013-14.07-2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#12"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Alba_Seleqtta_Hotel_Spa_Resort_****"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Lloret_de_Mar"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#2.07.2013-9.07.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#2.07.2013-9.07.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#7"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Barcelona"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Catalonia_Catedral_****"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#2.09.2013-14.09.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#2.09.2013-14.09.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#12"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Barcelona"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Hotel_Palace_GL_*****"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#20.07.2013-1.08.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#20.07.2013-1.08.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#12"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Angel_Apartaments_***"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Makarska"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#23.06.2014-30.06.2014 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#23.06.2014-30.06.2014">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#7"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Rome"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Starhotels_Metropole_****"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#3.07.2013-20.07.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#3.07.2013-20.07.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#7"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Athens"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#The_Athen_Gate_****"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#3.08.2013-17.08.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#3.08.2013-17.08.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#14"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Bari"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Victor_****"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#4.07.2013-11.07.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#4.07.2013-11.07.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#7"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Bari"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Moderno_***"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#4.09.2013-18.09.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#4.09.2013-18.09.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#14"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Budva"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Kangaroo_***"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#5.07.2013-19.07.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#5.07.2013-19.07.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#14"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Budva"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Sentido_Tara_Hotel_****"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#5.08.2013-17.08.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#5.08.2013-17.08.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#12"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Dubrovnik"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Neptun_Dubrovnik_****"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#6.07.2013-13.07.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#6.07.2013-13.07.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#7"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Dubrovnik"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Ivka_***"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#6.09.2013-18.09.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#6.09.2013-18.09.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#12"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Hotel_Osejare_****"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Makarska"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://misio.biz/travelontology.owl#7 -->
 
     <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#7">
@@ -825,11 +1096,95 @@
     
 
 
+    <!-- http://misio.biz/travelontology.owl#7.07.2013-_19.07.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#7.07.2013-_19.07.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#12"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Athens"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Grande_Bretagne_*****"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#7.09.2013-21.09.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#7.09.2013-21.09.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#14"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Color_**"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Paralia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#8.07.2013-15.07.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#8.07.2013-15.07.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#7"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Gabbiano_***"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Rimini"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#8.08.2013-20.08.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#8.08.2013-20.08.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#12"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Bar"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Castello_**"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#8.08.2013-22.08.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#8.08.2013-22.08.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDimension rdf:resource="http://misio.biz/travelontology.owl#14"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Barcelona"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Catalonia_Avinyo_***"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#9.08.2013-21.08.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#9.08.2013-21.08.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#12"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Oscar_*"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Paralia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#9.09.2013-16.09.2013 -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#9.09.2013-16.09.2013">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Date"/>
+        <hasDuration rdf:resource="http://misio.biz/travelontology.owl#7"/>
+        <hasHotelName rdf:resource="http://misio.biz/travelontology.owl#Olymip_***"/>
+        <hasCity rdf:resource="http://misio.biz/travelontology.owl#Paralia"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://misio.biz/travelontology.owl#Alba_Seleqtta_Hotel_Spa_Resort_**** -->
 
     <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Alba_Seleqtta_Hotel_Spa_Resort_****">
         <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
-        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Lloret_de_Mar_Hotels"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Angel_Apartaments_*** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Angel_Apartaments_***">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
     </owl:NamedIndividual>
     
 
@@ -839,6 +1194,14 @@
     <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Athens">
         <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Greece"/>
         <hasCountry rdf:resource="http://misio.biz/travelontology.owl#Greece"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Bahama_*** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Bahama_***">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
     </owl:NamedIndividual>
     
 
@@ -879,11 +1242,43 @@
     
 
 
+    <!-- http://misio.biz/travelontology.owl#Castello_** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Castello_**">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Catalonia_Avinyo_*** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Catalonia_Avinyo_***">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Catalonia_Catedral_**** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Catalonia_Catedral_****">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://misio.biz/travelontology.owl#Cold -->
 
     <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Cold">
         <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Preferences"/>
         <hasCity rdf:resource="http://misio.biz/travelontology.owl#Livigno"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Color_** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Color_**">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
     </owl:NamedIndividual>
     
 
@@ -898,11 +1293,27 @@
     
 
 
+    <!-- http://misio.biz/travelontology.owl#Diplomat_Palace_**** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Diplomat_Palace_****">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://misio.biz/travelontology.owl#Dubrovnik -->
 
     <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Dubrovnik">
         <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Croatia"/>
         <hasCountry rdf:resource="http://misio.biz/travelontology.owl#Croatia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Dubrovnik_Palace_***** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Dubrovnik_Palace_*****">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
     </owl:NamedIndividual>
     
 
@@ -915,10 +1326,34 @@
     
 
 
+    <!-- http://misio.biz/travelontology.owl#Floris_Hotel_*** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Floris_Hotel_***">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://misio.biz/travelontology.owl#FourStarRating -->
 
     <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#FourStarRating">
         <rdf:type rdf:resource="http://misio.biz/travelontology.owl#HotelRating"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Gabbiano_*** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Gabbiano_***">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Grande_Bretagne_***** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Grande_Bretagne_*****">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
     </owl:NamedIndividual>
     
 
@@ -938,7 +1373,54 @@
 
     <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Hotel_Acapulco_****">
         <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
-        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Lloret_de_Mar_Hotels"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Hotel_Begic_*** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Hotel_Begic_***">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Hotel_Marzia_**** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Hotel_Marzia_****">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Hotel_Meeting_**** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Hotel_Meeting_****">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Hotel_Osejare_**** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Hotel_Osejare_****">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Hotel_Palace_GL_***** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Hotel_Palace_GL_*****">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Hotel_Sonya_*** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Hotel_Sonya_***">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
     </owl:NamedIndividual>
     
 
@@ -951,6 +1433,22 @@
         <hasCity rdf:resource="http://misio.biz/travelontology.owl#Livigno"/>
         <hasCity rdf:resource="http://misio.biz/travelontology.owl#Rimini"/>
         <hasCity rdf:resource="http://misio.biz/travelontology.owl#Rome"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Ivka_*** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Ivka_***">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Kangaroo_*** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Kangaroo_***">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
     </owl:NamedIndividual>
     
 
@@ -984,6 +1482,14 @@
     
 
 
+    <!-- http://misio.biz/travelontology.owl#Moderno_*** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Moderno_***">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://misio.biz/travelontology.owl#Montenegro -->
 
     <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Montenegro">
@@ -1004,10 +1510,42 @@
     
 
 
+    <!-- http://misio.biz/travelontology.owl#Neptun_Dubrovnik_**** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Neptun_Dubrovnik_****">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Oasis_Park_**** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Oasis_Park_****">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Olymip_*** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Olymip_***">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://misio.biz/travelontology.owl#OneStarRating -->
 
     <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#OneStarRating">
         <rdf:type rdf:resource="http://misio.biz/travelontology.owl#HotelRating"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Oscar_* -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Oscar_*">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
     </owl:NamedIndividual>
     
 
@@ -1017,6 +1555,22 @@
     <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Paralia">
         <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Greece"/>
         <hasCountry rdf:resource="http://misio.biz/travelontology.owl#Greece"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Plaka_*** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Plaka_***">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Princess_**** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Princess_****">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
     </owl:NamedIndividual>
     
 
@@ -1056,6 +1610,14 @@
     
 
 
+    <!-- http://misio.biz/travelontology.owl#Sentido_Tara_Hotel_**** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Sentido_Tara_Hotel_****">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://misio.biz/travelontology.owl#Sights -->
 
     <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Sights">
@@ -1085,6 +1647,22 @@
     
 
 
+    <!-- http://misio.biz/travelontology.owl#Starhotels_Metropole_**** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Starhotels_Metropole_****">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#The_Athen_Gate_**** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#The_Athen_Gate_****">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://misio.biz/travelontology.owl#ThreeStarRating -->
 
     <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#ThreeStarRating">
@@ -1106,6 +1684,14 @@
     <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Ulcinj">
         <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Montenegro"/>
         <hasCountry rdf:resource="http://misio.biz/travelontology.owl#Montenegro"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://misio.biz/travelontology.owl#Victor_**** -->
+
+    <owl:NamedIndividual rdf:about="http://misio.biz/travelontology.owl#Victor_****">
+        <rdf:type rdf:resource="http://misio.biz/travelontology.owl#Hotel"/>
     </owl:NamedIndividual>
     
 
@@ -1143,27 +1729,48 @@
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
             <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FourStarRating"/>
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#OneStarRating"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FiveStarRating"/>
             <rdf:Description rdf:about="http://misio.biz/travelontology.owl#ThreeStarRating"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FiveStarRating"/>
             <rdf:Description rdf:about="http://misio.biz/travelontology.owl#OneStarRating"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FiveStarRating"/>
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FourStarRating"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FourStarRating"/>
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#ThreeStarRating"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FiveStarRating"/>
             <rdf:Description rdf:about="http://misio.biz/travelontology.owl#TwoStarRating"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FiveStarRating"/>
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#OneStarRating"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FiveStarRating"/>
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#ThreeStarRating"/>
             <rdf:Description rdf:about="http://misio.biz/travelontology.owl#TwoStarRating"/>
         </owl:distinctMembers>
     </rdf:Description>
@@ -1178,35 +1785,14 @@
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
             <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FourStarRating"/>
+            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#TwoStarRating"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
             <rdf:Description rdf:about="http://misio.biz/travelontology.owl#OneStarRating"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#ThreeStarRating"/>
             <rdf:Description rdf:about="http://misio.biz/travelontology.owl#TwoStarRating"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FourStarRating"/>
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#TwoStarRating"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FiveStarRating"/>
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FourStarRating"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#FiveStarRating"/>
-            <rdf:Description rdf:about="http://misio.biz/travelontology.owl#ThreeStarRating"/>
         </owl:distinctMembers>
     </rdf:Description>
 </rdf:RDF>
