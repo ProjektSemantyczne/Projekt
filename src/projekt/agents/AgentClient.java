@@ -42,6 +42,11 @@ public class AgentClient extends Agent{
 	OWLOntology travelOntology;
 	Set<OWLNamedIndividual> individuals = new HashSet<OWLNamedIndividual>();
 	OWLDataFactory dataFactory;
+	public static int step = 0;
+	public static boolean finished = false;
+	public void setStep(int step) {
+		this.step = step;
+	}
 	protected void setup(){
 		System.out.println("Agent " + getLocalName() + " started");
 		ontologyManager = new OntologyManager();
@@ -75,26 +80,20 @@ public class AgentClient extends Agent{
 	}
 	class AskForCountriesBehaviour extends Behaviour
 	{
-		String[] preferences = new String[10];
+		String[] preferences = new String[15];
 		private static final long serialVersionUID = 5639516177887167091L;
-		private boolean finished = false;
     	private OWLOntology m_queryOntology;
-    	private int step = 0;
     	String nextQuery = null;
     	private Agent agent;
         public AskForCountriesBehaviour(Agent a) {
             super(a);
             agent = a;
         }
-        
         public void action() 
         {
         	ACLOWLMessage msg = new ACLOWLMessage(ACLMessage.QUERY_IF);
         	msg.addReceiver(new AID("trip", AID.ISLOCALNAME));
         	msg.setOntology("http://misio.biz/travelontology.owl");
-        	// Nazwa do wyœwietlenia "Wybierz name" - miasto, pañstwo itd 
-        	String name = null;
-        	
         	switch(step) {
         	case 0:
         		msg.setConversationId("Preferences");
@@ -111,7 +110,6 @@ public class AgentClient extends Agent{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-            	name = "pañstwo";
             	send(msg);
         		break;
         	case 1:
@@ -120,35 +118,15 @@ public class AgentClient extends Agent{
         		try {
 					OWLOntology cityQueryOntology = ontologyManager.getQueryManager().createNewOWLQueryOntology();
 					for(int i = 0; i < preferences.length; i++) {
-						System.out.println(preferences[i]);
 						if(preferences[i]!=null && !preferences[i].isEmpty())
 							individuals.add(ontologyManager.getDataFactory().getOWLNamedIndividual(travelOntology, preferences[i]));
 					}
-					//System.out.println(cityClass.getObjectPropertyValues(travelOntology).toString());
-					//System.out.println(cityClass.toString());
 					OWLOntology answerOnto = ontologyManager.getQueryManager().prepareQueryAnswerFromInstances(individuals, cityQueryOntology, myAgent);
 					msg.setContentOntology(answerOnto);
 					msg.setConversationId("City");
 				} catch (IllegalArgumentException | OWLOntologyStorageException e) {
 					e.printStackTrace();
 				} catch (OWLOntologyCreationException e) {
-					e.printStackTrace();
-				}
-        		send(msg);
-        		break;
-        	case 2:
-        		name = "hotel";
-        		System.out.println("Agent " + getLocalName() + " asking for hotels");
-        		try {
-					OWLOntology cityQueryOntology = ontologyManager.getQueryManager().createNewOWLQueryOntology();
-					OWLClass cityClass = ontologyManager.getDataFactory().getOWLClass(travelOntology, nextQuery + "_Hotels");
-					ontologyManager.getQueryManager().createCustomQueryClass(cityQueryOntology, "hotelQuery", cityClass);
-					msg.setContentOntology(cityQueryOntology);
-				} catch (OWLOntologyCreationException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (OWLOntologyStorageException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
         		send(msg);
@@ -163,11 +141,6 @@ public class AgentClient extends Agent{
 					ontology = ontologyManager.getOntologyFromACLMessage(msgAnswer);
 					individuals = ontologyManager.getQueryManager().filterAnswerSetInstances(ontology);
 					ontologyManager.getQueryManager().removeAnswerSetAxioms(ontology);
-					//Dialog dialog = new Dialog();
-					//String s = dialog.Create(individuals, name);
-					//System.out.println(s);
-					//nextQuery = s;
-					//System.out.println(individuals.toString());
 					switch(step) {
 						case 0:
 							PreferencesFrame dialog = new PreferencesFrame();
@@ -175,47 +148,13 @@ public class AgentClient extends Agent{
 							dialog.setVisible(true);
 							dialog.setSize(500,600);
 							dialog.addNotify();
+							step++;
 						break;
 						case 1:
-							//Dialog dialog2 = new Dialog();
-							//String s = dialog2.Create(individuals, "bla");
-							//List l = new List(individuals);
-							//l.setVisible(true);
-							//System.out.println(individuals);
 							TripsFrame dialog1 = new TripsFrame(individuals);
 							dialog1.createAndShowGUI();
 						break;
 					}
-					step++;
-					System.out.println("Step - " + step);
-					// Iterujemy po individualach
-/*					Iterator<OWLNamedIndividual> it = individuals.iterator();
-					System.out.println("Query answer:");
-					while(it.hasNext()){
-						OWLNamedIndividual ind = it.next();
-						// Pobieramy Object Property z individuala
-						Map<OWLObjectPropertyExpression, Set<OWLIndividual>> s1 = ind.getObjectPropertyValues(ontology);
-						System.out.println(s1.toString());
-						// Wyci¹gamy key object property np "hasCity"
-						if(!s1.isEmpty() && s1.keySet().iterator().hasNext()) {
-							System.out.println(stripFromIRI(s1.keySet().iterator().next().toString()));
-						}
-						// Trochê zakrêcone ale iterujemy tu po wartoœciach czyli np po miastach
-						Iterable<Set<OWLIndividual>> data = s1.values();
-						Iterator<Set<OWLIndividual>> iterator = data.iterator();
-						Iterator<OWLIndividual> itt = null;
-						if(iterator.hasNext()) {
-							 itt = iterator.next().iterator();
-							while(itt.hasNext())
-								System.out.println(stripFromIRI(itt.next().toString()));
-						}
-						// Wyjmujemy Types individuala, w których mamy akurat np. nasze Pañstwo do danego miasta
-						Iterable<OWLClassExpression> x = ind.getTypes(ontology);
-						Iterator<OWLClassExpression> it2 = x.iterator();
-						System.out.println("Pañstwo = " + it2.next());
-						System.out.println("Miasto = " + ind);	
-						System.out.println("--------------");
-					}*/
 				} catch (OWLOntologyCreationException | IOException e) {
 					e.printStackTrace();
 				}
@@ -225,7 +164,7 @@ public class AgentClient extends Agent{
 
 		@Override
 		public boolean done() {
-			return step==2;
+			return finished;
 		}
 	}
 }

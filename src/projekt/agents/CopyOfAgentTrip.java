@@ -34,7 +34,7 @@ import jade.lang.acl.ACLMessage;
 import jadeOWL.base.OntologyManager;
 import jadeOWL.base.messaging.ACLOWLMessage;
 
-public class AgentTrip extends Agent{
+public class CopyOfAgentTrip extends Agent{
 
 	private static final long serialVersionUID = 5862645069068601092L;
 	OntologyManager ontologyManager;
@@ -70,15 +70,7 @@ public class AgentTrip extends Agent{
 		public RecieveClientMessages(Agent a){
 			super(a);
 		}
-		public boolean isInteger(String s) {
-		    try { 
-		        Integer.parseInt(s); 
-		    } catch(NumberFormatException e) { 
-		        return false; 
-		    }
-		    // only got here if we didn't return false
-		    return true;
-		}
+
 		public void action() 
 		{
 
@@ -89,6 +81,8 @@ public class AgentTrip extends Agent{
 				try {
 					ontology = msg.getContentOntology(ontologyManager,myAgent);
 					if(msg.getConversationId() == "Preferences") {
+						//System.out.println(msg.getContent());
+						System.out.println(msg.getConversationId());
 						Set<OWLClass> filteredSet = ontologyManager.getQueryManager().filterOWLQueryClasses(ontology);
 						if(!filteredSet.isEmpty()) {
 							ontologyManager.addImportToOntology(ontology, travelOntology);
@@ -109,91 +103,51 @@ public class AgentTrip extends Agent{
 					}
 					else {
 						Set<OWLNamedIndividual> indReturn = new HashSet<OWLNamedIndividual>();
-
+						
 						ArrayList<Set<OWLNamedIndividual>> indTemp = new ArrayList<Set<OWLNamedIndividual>>();
 						indReturn.clear();
 						indTemp.clear();
-						// Pobieramy individuale preferencji
+						System.out.println(msg.getContent());
+						System.out.println(msg.getConversationId());
 						Set<OWLNamedIndividual> individuals = ontologyManager.getQueryManager().filterAnswerSetInstances(ontology);
+						Iterator<OWLNamedIndividual> indIterator = individuals.iterator();
 						int licznik = 0, ar = 0;
-						OWLClass c = ontologyManager.getDataFactory().getOWLClass(travelOntology, "Date");
-						Set<OWLNamedIndividual> dateInd = ontologyManager.getQueryManager().getInstancesForClassQuery(c, travelOntology);
-						Iterator<OWLNamedIndividual> dateIterator = dateInd.iterator();
-						// Lecimy po wszystkich datach
-						while(dateIterator.hasNext()) {
-							// Ile preferencji siê zgadza
-							int howMany = 0;
-							Set<OWLNamedIndividual> datePreferences = new HashSet<OWLNamedIndividual>();
-							Set<OWLNamedIndividual> durationPreferences = new HashSet<OWLNamedIndividual>();
-							Set<OWLNamedIndividual> transportPreferences = new HashSet<OWLNamedIndividual>();
-							// Nasza data
-							OWLNamedIndividual date = dateIterator.next();
-							// Pobieramy object properties z daty
-							Map<OWLObjectPropertyExpression, Set<OWLIndividual>> dateProperties = date.getObjectPropertyValues(travelOntology);
-							// Pobieramy klucze
-							Iterator<OWLObjectPropertyExpression> dateKeys = dateProperties.keySet().iterator();
-							// Lecimy po kluczach
-							while(dateKeys.hasNext()) {
-								// klucz
-								OWLObjectPropertyExpression dateKey = dateKeys.next();
-								// szukamy preferencji
-								if(stripFromIRI(dateKey.toString()).equals("hasPreference")) {
-									Iterator<OWLIndividual> valIterator = dateProperties.get(dateKey).iterator();
+						while(indIterator.hasNext()) {
+							licznik++;
+							Map<OWLObjectPropertyExpression, Set<OWLIndividual>> individualProperties = indIterator.next().getObjectPropertyValues(travelOntology);
+							Iterator<OWLObjectPropertyExpression> indKeys = individualProperties.keySet().iterator();
+							while(indKeys.hasNext()) {
+								OWLObjectPropertyExpression key = indKeys.next();
+								if(stripFromIRI(key.toString()).equals("hasCity")) {
+									Iterator<OWLIndividual> valIterator = individualProperties.get(key).iterator();
+									Set<OWLNamedIndividual> temp = new HashSet<OWLNamedIndividual>();
 									while(valIterator.hasNext()) {
-										OWLNamedIndividual preference = (OWLNamedIndividual) valIterator.next();
-										datePreferences.add(preference);
-									}	
+										OWLNamedIndividual individual = (OWLNamedIndividual) valIterator.next();
+										//if(indTemp.contains(individual))
+										//		indReturn.add(individual);
+										temp.add(individual);
+									}
+									indTemp.add(temp);
 								}
-								if(stripFromIRI(dateKey.toString()).equals("hasDuration")) {
-									Iterator<OWLIndividual> valIterator = dateProperties.get(dateKey).iterator();
-									while(valIterator.hasNext()) {
-										OWLNamedIndividual preference = (OWLNamedIndividual) valIterator.next();
-										durationPreferences.add(preference);
-									}	
-								}
-								if(stripFromIRI(dateKey.toString()).equals("hasTransport")) {
-									Iterator<OWLIndividual> valIterator = dateProperties.get(dateKey).iterator();
-									while(valIterator.hasNext()) {
-										OWLNamedIndividual preference = (OWLNamedIndividual) valIterator.next();
-										transportPreferences.add(preference);
-									}	
-								}
-								
-							}
-							int iloscPreferencji = 0;
-							int iloscPreferencjiDni = 0;
-							int howManyDurations = 0;
-							int howManyTransport = 0;
-							int iloscTransportPreferencji = 0;
-							// Iterujemy po preferencjach
-							Iterator<OWLNamedIndividual> indIterator = individuals.iterator();
-							while(indIterator.hasNext()) {
-								OWLNamedIndividual preference = indIterator.next();
-								if(isInteger(stripFromIRI(preference.toString()))) {
-									iloscPreferencjiDni++;
-								} else if(!stripFromIRI(preference.toString()).equals("Bus") && !stripFromIRI(preference.toString()).equals("Train") && !stripFromIRI(preference.toString()).equals("Plane")){
-									iloscPreferencji++;
-								} else {
-									iloscTransportPreferencji++;
-								}
-								// Je¿eli wycieczka zawiera preferencje wybrana przez usera to git 
-								if(datePreferences.contains(preference)) {
-									howMany++;
-								// je¿eli preferencja czasu siê zgadza to robimy ++
-								} else if(durationPreferences.contains(preference)) {
-									howManyDurations++;
-								} else if(transportPreferences.contains(preference)) {
-									howManyTransport++;
-									//howMany++;
-								}
-							}
-							// paczamy czy iloœæ zgodnych preferencji jest równa liczbie preferencji wybranych przez usera
-							// jezeli ta to dodajemy date to wyników
-							// patrzymy tez czy wycieczka zawiera przynajmniej jedna preferencje dot czasu wybrana przez usera
-							if(howMany == iloscPreferencji && howManyDurations >= 1 && howManyTransport >= 1) {
-								indReturn.add(date);								
 							}
 						}
+						for(int i = 0; i < indTemp.size(); i++) {
+							Iterator<OWLNamedIndividual> iterator = indTemp.get(i).iterator();
+							while(iterator.hasNext()) {
+								int count = 0;
+								OWLNamedIndividual ind = iterator.next();
+								for(int z = 0; z < indTemp.size(); z++) {
+									if(indTemp.get(z).contains(ind)) {
+										count++;
+									}
+								}
+								if(count == indTemp.size()) {
+									indReturn.add(ind);
+									System.out.println("Add to return: " + ind);
+								}
+							}
+						}
+						System.out.println(indReturn.toString());
 						ACLOWLMessage msgAnswer = new ACLOWLMessage(ACLMessage.QUERY_IF);
 						OWLOntology answerOnto;
 						answerOnto = ontologyManager.getQueryManager().prepareQueryAnswerFromInstances(indReturn, travelOntology, myAgent);
@@ -203,6 +157,7 @@ public class AgentTrip extends Agent{
 						System.out.println("Agent " + getLocalName() + " answering Client");
 						msgAnswer.setConversationId(msg.getConversationId());
 						send(msgAnswer);
+						//System.out.println(individualProperties.toString());
 					}
 				} catch (OWLOntologyCreationException e) {
 					e.printStackTrace();
